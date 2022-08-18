@@ -3,7 +3,7 @@ package test
 import (
 	"testing"
 
-	cache "cache/src"
+	cache "github.com/energywork/simple-cache/src"
 )
 
 func TestCache(t *testing.T) {
