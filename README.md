@@ -2,9 +2,10 @@
 
 ### Example
 
+```go
 func main() {
 
-    c := cache.New()
+    c := cache.New() // initiate cache
 
     c.Set("userId", 42)
 
@@ -15,3 +16,4 @@ func main() {
     fmt.Printf("userId: %+v", c.Get("userId")) // will print "userId: <nil>"
     
 }
+```
