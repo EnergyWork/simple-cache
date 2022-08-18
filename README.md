@@ -5,15 +5,23 @@
 ```go
 func main() {
 
-    c := cache.New() // initiate cache
+   c := cache.New()
+	c.Set("userId", 42, 0)
 
-    c.Set("userId", 42)
+	v, err := c.Get("userId")
+	if err != nil {
+        fmt.Println(err)
+		return
+	}
+	t.Logf("userId: %+v", v)
 
-    fmt.Printf("userId: %+v", c.Get("userId")) // will print "userId: 42"
+	c.Delete("userId")
 
-    c.Delete("userId")
-
-    fmt.Printf("userId: %+v", c.Get("userId")) // will print "userId: <nil>"
-    
+	v, err = c.Get("userId")
+	if err == internal.ErrNotFound {
+		fmt.Printf("%f -> success", err)
+		return
+	}
+	fmt.Printf("must not find but: userId -> %+v", v)
 }
 ```
