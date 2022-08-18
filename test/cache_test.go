@@ -21,7 +21,7 @@ func TestCache(t *testing.T) {
 
 	v, err = c.Get("userId")
 	if err == internal.ErrNotFound {
-		t.Logf("%f -> success", err)
+		t.Logf("%s -> success", err)
 		return
 	}
 	t.Fatalf("must not find but: userId -> %+v", v)
