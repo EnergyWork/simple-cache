@@ -1,7 +1,7 @@
 ## Elementary in-memory cache
 
 ### Example
-
+---
 ```go
 func main() {
 
