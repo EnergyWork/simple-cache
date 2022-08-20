@@ -7,4 +7,5 @@ type ICache interface {
 	Get(string) (interface{}, error)
 	Delete(string)
 	Clear()
+	Free()
 }

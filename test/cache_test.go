@@ -50,3 +50,19 @@ func TestExpiredCache(t *testing.T) {
 	}
 	t.Log("value exired")
 }
+
+func TestClear(t *testing.T) {
+	c := cache.New()
+	c.Set("a", 1, 0)
+	c.Set("b", 2, 5*time.Second)
+	c.Set("c", 3, 10*time.Second)
+	t.Logf("CACHE: %+v", c)
+	time.Sleep(6 * time.Second)
+	c.Clear()
+	t.Logf("CACHE: %+v", c)
+	time.Sleep(6 * time.Second)
+	c.Clear()
+	t.Logf("CACHE: %+v", c)
+	c.Free()
+	t.Logf("CACHE: %+v", c)
+}

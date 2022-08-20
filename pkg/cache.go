@@ -12,6 +12,7 @@ type Cache struct {
 	storage map[string]internal.Item
 }
 
+// New : returns new cache
 func New() *Cache {
 	return &Cache{
 		locker:  new(sync.RWMutex),
@@ -19,6 +20,8 @@ func New() *Cache {
 	}
 }
 
+// Set : adding value to cache with key
+//  ttl: can be infinite if the ttl parameter is 0
 func (c *Cache) Set(key string, value interface{}, ttl time.Duration) {
 	if c.storage == nil {
 		return //nothing will happen
@@ -32,6 +35,7 @@ func (c *Cache) Set(key string, value interface{}, ttl time.Duration) {
 	c.locker.Unlock()
 }
 
+// Get : getting value by key
 func (c *Cache) Get(key string) (interface{}, error) {
 	if c.storage == nil {
 		return nil, internal.ErrNotInitialized
@@ -51,6 +55,7 @@ func (c *Cache) Get(key string) (interface{}, error) {
 	return val, nil
 }
 
+// Delete : delete valye by key
 func (c *Cache) Delete(key string) {
 	if c.storage == nil {
 		return
@@ -61,6 +66,20 @@ func (c *Cache) Delete(key string) {
 	c.locker.Unlock()
 }
 
+// Clear : clearing the cache by expired values
 func (c *Cache) Clear() {
-	// todo: ...
+	for k, v := range c.storage {
+		if v.Expired() {
+			c.locker.Lock()
+			delete(c.storage, k)
+			c.locker.Unlock()
+		}
+	}
+}
+
+// Free : clearing cache
+func (c *Cache) Free() {
+	for k := range c.storage {
+		delete(c.storage, k)
+	}
 }

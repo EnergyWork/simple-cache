@@ -1,4 +1,7 @@
-## Elementary in-memory cache
+## Elementary in-memory cache with TTL for value
+
+## Installation
+go get -u github.com/EnergyWork/simple-cache
 
 ### Example
 ---
@@ -19,8 +22,7 @@ func main() {
     v, err = c.Get("userId")
     if err == internal.ErrNotFound {
         fmt.Printf("%f -> success", err)
-        return
     }
-    fmt.Printf("must not find but: userId -> %+v", v)
 }
 ```
+---
