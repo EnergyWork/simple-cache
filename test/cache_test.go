@@ -8,6 +8,8 @@ import (
 	cache "github.com/energywork/simple-cache/pkg"
 )
 
+// go test -v -run TestSub
+
 func TestCache(t *testing.T) {
 	c := cache.New()
 	c.Set("userId", 42, 0)
