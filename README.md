@@ -6,6 +6,11 @@ go get -u github.com/EnergyWork/simple-cache
 ### Example
 ---
 ```go
+
+import (
+    cache "github.com/energywork/simple-cache/pkg"
+)
+
 func main() {
     c := cache.New()
     c.Set("userId", 42, 0)

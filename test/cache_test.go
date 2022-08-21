@@ -8,7 +8,7 @@ import (
 	cache "github.com/energywork/simple-cache/pkg"
 )
 
-// go test -v -run TestSub
+// go test -v -run TestXxx
 
 func TestCache(t *testing.T) {
 	c := cache.New()
